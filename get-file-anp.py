@@ -21,14 +21,19 @@ for i in soup.find_all('ul', class_ = 'interna-faq'):
        teste.append(x['href'])
        teste2.append(x['href'].split('/')[-1].split('.')[0])
 
-
-print(teste)
-print(teste2)
-
 def get_file_anp(link):
     url2 = 'http://www.anp.gov.br{}'.format(link)
     file = requests.get(url2)
-    with open(link.split('/')[-1], 'wb') as code:
-        code.write(file.content)
+    cln_link = link.split(r'/')[-1]
 
-get_file_anp(teste[0])
+    if cln_link.split('.')[1] == 'pdf':
+        cln_link = cln_link.split('.')[-2]
+        with open('{}.pdf'.format(cln_link), 'wb') as code:
+            code.write(file.content)
+
+    elif cln_link.split('.')[1] == ('xls' or 'xlsx'):
+        cln_link = cln_link.split('.')[-2]
+        with open('{}.xls'.format(cln_link), 'wb') as code:
+            code.write(file.content)
+
+get_file_anp(teste[21])
