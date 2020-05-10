@@ -14,17 +14,16 @@ page = requests.get(url)
 soup = BeautifulSoup(page.content, 'html.parser')
 
 teste = []
-teste2 = []
+teste2 =[]
 
 for i in soup.find_all('ul', class_ = 'interna-faq'):
    for x in i.find_all('a', href=True):
        teste.append(x['href'])
-       teste2.append(x.text)
+       teste2.append(x['href'].split('/')[-1].split('.')[0])
+
 
 print(teste)
 print(teste2)
-
-print(teste[0])
 
 def get_file_anp(link):
     url2 = 'http://www.anp.gov.br{}'.format(link)
