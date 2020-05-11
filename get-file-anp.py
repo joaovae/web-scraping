@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sun Apr 19 20:29:31 2020
-
 @author: JOAO VICTOR
 """
 
@@ -21,19 +20,29 @@ for i in soup.find_all('ul', class_ = 'interna-faq'):
        teste.append(x['href'])
        teste2.append(x['href'].split('/')[-1].split('.')[0])
 
+
 def get_file_anp(link):
     url2 = 'http://www.anp.gov.br{}'.format(link)
     file = requests.get(url2)
-    cln_link = link.split(r'/')[-1]
+    cln_link = link.split('/')[-1].split('\\')[-1]
 
     if cln_link.split('.')[1] == 'pdf':
         cln_link = cln_link.split('.')[-2]
         with open('{}.pdf'.format(cln_link), 'wb') as code:
             code.write(file.content)
 
-    elif cln_link.split('.')[1] == ('xls' or 'xlsx'):
+    elif cln_link.split('.')[1] == 'xls' or 'xlsx':
         cln_link = cln_link.split('.')[-2]
         with open('{}.xls'.format(cln_link), 'wb') as code:
             code.write(file.content)
 
-get_file_anp(teste[21])
+    elif cln_link.split('.')[1] == 'zip':
+        cln_link = cln_link.split('.')[-2]
+        with open('{}.zip'.format(cln_link), 'wb') as code:
+            code.write(file.content)
+    else:
+        cln_link = cln_link.split('.')[-2]
+        with open('{}.zip'.format(cln_link), 'wb') as code:
+            code.write(file.content)
+
+
