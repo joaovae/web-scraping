@@ -5,15 +5,16 @@ Created on Mon Apr 13 09:53:34 2020
 @author: JOAO VICTOR
 """
 
-import resquests as req
+import requests as req
 import pandas as pd
 import json
 
 def sgs_api(codigo):
 
-    sgs_url = f'http://api.bcb.gov.br/dados/serie/bcdata.sgs.{codigo}/dados?formato=json'
+    sgs_url = 'http://api.bcb.gov.br/dados/serie/bcdata.sgs.{}/dados?formato=json'.format(codigo)
     serie = req.get(sgs_url)
     serie = json.loads(serie.text)
 
     data = pd.DataFrame(serie)
     return data
+
