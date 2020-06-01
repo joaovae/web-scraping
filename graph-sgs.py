@@ -12,8 +12,8 @@ def graph_sgs(tipo = None, codigo = None):
 
     df = sgs_api(codigo)
 
-    if tipo == 'barra' or None:
-        plt.bar('data', 'valor', data=df)
+    if tipo == 'area' or None:
+        plt.fill_between('data', 'valor', data=df)
 
 
     elif tipo == 'linha':
@@ -22,4 +22,4 @@ def graph_sgs(tipo = None, codigo = None):
     else:
         print('Tipo de gráfico inválido')
 
-print(graph_sgs('linha', '13069'))
+print(graph_sgs('area', '13069'))

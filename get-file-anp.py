@@ -40,9 +40,3 @@ def get_file_anp(link):
         cln_link = cln_link.split('.')[-2]
         with open('{}.zip'.format(cln_link), 'wb') as code:
             code.write(file.content)
-    else:
-        cln_link = cln_link.split('.')[-2]
-        with open('{}.zip'.format(cln_link), 'wb') as code:
-            code.write(file.content)
-
-

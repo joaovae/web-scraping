@@ -21,8 +21,8 @@ def get_covid_data(arg=None):
 
     df = pd.read_html(table_str)[0]
 
-    df.set_index('Country,Other', inplace = True)
     return df
+
 
 
 

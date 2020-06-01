@@ -17,4 +17,3 @@ def sgs_api(codigo):
 
     data = pd.DataFrame(serie)
     return data
-
